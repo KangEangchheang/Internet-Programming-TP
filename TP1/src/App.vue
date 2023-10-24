@@ -1,28 +1,28 @@
 <template>
   <div class="cont">
     <div class="CategoryList">
-      <Category v-for="item in items" :key="item.id" :title="item.title" 
+      <Category v-for="item in catitems" :key="item.id" :title="item.title" 
       :color="item.color" :quantity="item.quantity" :imagePath="item.imagePath"/>    
+    </div>
+    <div class="PromotionList">
+      <Promotion v-for="item in promoitem" :key="item.id" :btnColor="item.buttonColor" :color="item.color" :text="item.text" :imagePath="item.imagePath"/>
     </div>
   </div>
 </template>
 <script>
   import Category from './components/Category.vue';
-  import cat1 from './assets/image/cat-1.png';
-  import cat11 from './assets/image/cat-11.png';
-  import cat12 from "./assets/image/cat-12.png";
-  import cat9 from "./assets/image/cat-9.png";
-  import cat3 from "./assets/image/cat-3.png";
-  import cat4 from "./assets/image/cat-4.png";
-  import cat15 from "./assets/image/cat-15.png";
-  import cat14 from "./assets/image/cat-14.png";
-  import cat7 from "./assets/image/cat-7.png";
+  import Promotion from './components/Promotion.vue';
 
   export default {
   name: "App",
   data(){
     return {
-      items:[
+      promoitem:[
+        { id: 1, color: "#F0E8D5", buttonColor: "#3BB77E", text: "Everyday Fresh & Clean with Our Products",imagePath: new URL('./assets/image/Cms-04.png', import.meta.url).href },
+        { id: 2, color: "#F3E8E8", buttonColor: "#3BB77E", text: "Make your Breakfast Healthy and Easy", imagePath: new URL('./assets/image/Cat-01 1.png', import.meta.url).href },
+        { id: 3, color: "#E7EAF3", buttonColor: "#FDC040", text: "The best Organic Products Online", imagePath: new URL('./assets/image/Cms-03 1.png', import.meta.url).href },
+      ],
+      catitems:[
         { id: 1, color: "rgb(163, 230, 53,", title:"Cake & Milk", quantity:14, imagePath: new URL('./assets/image/cat-13.png',import.meta.url).href},
         { id: 2, color: "rgb(251, 146, 60,", title:"Peach", quantity:17, imagePath: new URL('./assets/image/cat-11.png', import.meta.url).href },
         { id: 3, color: "rgb(74, 222, 128,", title: "Oganic Kiwi", quantity: 21, imagePath: new URL('./assets/image/cat-12.png', import.meta.url).href },
@@ -37,22 +37,32 @@
     }
   },
   components: {
-    Category
+    Category,
+    Promotion
 },
 };
 </script>
 <style>
   .cont{
     display:flex;
+    width: 100vw;
     align-items: center;
     flex-direction: column;
     padding:2rem;
+    gap:2rem;
   }
   .CategoryList{
     flex-wrap: wrap;
-    width: 100vw;
+    width: 100%;
     display:flex;
     justify-content: center;
-    gap:0.4rem;
+    gap:1.33rem;
+  }
+  .PromotionList{
+    flex-wrap: wrap;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    gap:1rem;
   }
 </style>
