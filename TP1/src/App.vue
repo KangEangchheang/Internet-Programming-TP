@@ -1,11 +1,18 @@
 <template>
   <div class="cont">
     <div class="CategoryList">
-      <Category v-for="item in catitems" :key="item.id" :title="item.title" 
-      :color="item.color" :quantity="item.quantity" :imagePath="item.imagePath"/>    
+      <Category v-for="item in catitems" :key="item.id" 
+      :title="item.title" 
+      :color="item.color" 
+      :quantity="item.quantity" 
+      :imagePath="item.imagePath"/>    
     </div>
     <div class="PromotionList">
-      <Promotion v-for="item in promoitem" :key="item.id" :btnColor="item.buttonColor" :color="item.color" :text="item.text" :imagePath="item.imagePath"/>
+      <Promotion v-for="item in promoitem" :key="item.id" 
+      :btnColor="item.buttonColor" 
+      :color="item.color" 
+      :text="item.text" 
+      :imagePath="item.imagePath"/>
     </div>
   </div>
 </template>
