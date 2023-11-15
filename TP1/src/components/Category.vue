@@ -42,5 +42,6 @@
         opacity: 0.5;
         font-size: 12px;
         line-height: 18px;
+        text-align: center;
     }
 </style>
