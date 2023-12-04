@@ -1,5 +1,6 @@
 <template>
   <div class="cont">
+    <Header/>
     <Menu :title="'Featured Categories'"/>
     <div class="CategoryList">
       <Category v-for="item in catitems" :key="item.id" 
@@ -35,6 +36,7 @@
   import Product from '@/components/Product.vue';
   import { mapState } from 'pinia';
   import { useProductStore } from './stores/productStore';
+import Header from './components/Header.vue';
 
   export default {
   name: "App",
@@ -68,6 +70,7 @@
     Promotion,
     Menu,
     Product,
+    Header
 },
 };
 </script>
