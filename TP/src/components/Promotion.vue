@@ -2,7 +2,7 @@
     <div class="Promotion" :style="{ backgroundColor: color }">
         <div class="titles">
             <h1 v-text="text"></h1>
-            <CustomButton class="CustomButton" :color="btnColor"/>
+            <CustomButton class="CustomButton" :color="btnColor" title="Shop now →"/>
         </div>
         <img :src="imagePath" alt="img" class="Images"/>
     </div>

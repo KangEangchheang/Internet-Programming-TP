@@ -105,14 +105,16 @@
         
     }
     .card >img{
-        width:70%;
-        height:50%;
+        display: flex;
+        max-width: 70%;
+        max-height: 40%;
+        flex-grow: 1;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
         align-self: center;
     }
     .card{
-        width: 100%;
+        max-height: 100%;
         display:flex;
         flex-direction: column;
         gap:0.2rem;

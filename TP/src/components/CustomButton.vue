@@ -1,10 +1,11 @@
 <template>     
-    <button :style="{backgroundColor: color}" class="CustomButton">Shop Now ➡</button>
+    <button :style="{backgroundColor: color}" class="CustomButton">
+        <!-- {{Shop Now ➡}} -->{{ title}}
+    </button>
 </template>
 <script>
     export default {
-        name:"CustomButton",
-        props:["color"],
+        props:["color","title"],
     }
 </script>
 <style scoped>

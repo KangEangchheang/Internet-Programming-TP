@@ -15,7 +15,7 @@
             <hr style="height:60%;align-self: center;opacity:0.3;"/>
             <input type="search" placeholder="Search"/>
         </div>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <img src="../assets/icons/fi-rs-search.svg" style="scale: 0.8;"/>
     </div>
 </template>
 <script>
@@ -30,6 +30,7 @@
     border:2px solid rgb(59, 183, 126,0.4);
     border-radius: 4px;
     padding:0.5rem 1rem;
+    height: 3rem;
 }
 .searchbox select{
     font-family: 'Quicksand', sans-serif;
@@ -45,11 +46,6 @@
     border:0px;
     padding-left: 1rem;
     width: 100%;
-    color:var(--vt-c-divider-dark-1)
-}
-.searchbox i{
-    width:5px;
-    height:5px;
-    color:blue;
+    color:var(--vt-c-divider-dark-1);
 }
 </style>
