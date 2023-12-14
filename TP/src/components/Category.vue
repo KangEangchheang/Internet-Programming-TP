@@ -1,5 +1,5 @@
 <template>
-    <div class="Category" :style="{backgroundColor: color+'0.2)',border:'1.6px solid '+color+',1)'}">
+    <div class="Category" :style="{backgroundColor: color+'0.2)',}" @click="redirect">
         <img class="Image" v-bind:src="imagePath"/>
         <div class="Title">
             <p1 v-text="title"></p1>
@@ -8,9 +8,18 @@
     </div>
 </template>
 <script>
+import { useRouter } from 'vue-router';
+
     export default{
         name:"Category",
-        props:["title","color","imagePath","quantity"],
+        props:["title","color","imagePath","quantity","id"],
+        setup(props){
+            const router = useRouter();
+            function redirect(){
+                router.push(`/categories/${props.id}`);
+            }
+            return {redirect};
+        },
     }   
 </script>
 <style scoped>
@@ -22,6 +31,11 @@
         flex-direction: column;
         align-items: center;
         gap:5px;
+        transition: all .2s ease-in-out;
+    }
+    .Category:hover{
+        cursor: pointer;
+        scale: 1.1;
     }
     .Image{
         height: 5rem;

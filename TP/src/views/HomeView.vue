@@ -6,14 +6,16 @@
         :title="item.title" 
         :color="item.color" 
         :quantity="getCountQty(item.id)" 
-        :imagePath="item.imagePath"/>    
+        :imagePath="item.imagePath"
+        :id="item.id"/>    
     </div>
     <div class="PromotionList">
         <Promotion v-for="item in promoitem" :key="item.id" 
         :btnColor="item.buttonColor" 
         :color="item.color" 
         :text="item.text" 
-        :imagePath="item.imagePath"/>
+        :imagePath="item.imagePath"
+        :id="item.id"/>
     </div>
     <Menu :title="'Popular Products'"/>
     <div class="ProductList">
@@ -24,7 +26,8 @@
         :discountPercentage="item.discountPercentage"
         :tag="item.tag"
         :description="item.description"
-        :sellPrice="item.sellPrice"/>
+        :sellPrice="Number(item.sellPrice)"
+        :id="item.id"/>
     </div>
 </template>
 <script>
@@ -33,18 +36,19 @@
     import Menu from '@/components/Menu.vue';
     import Product from '@/components/Product.vue';
     import {mapState} from 'pinia';
-    import {useProductStore} from './stores/productStore';
-    import Showcase from './components/Showcase.vue';
+    import {useProductStore} from '@/stores/productStore';
+    import Showcase from '@/components/Showcase.vue';
 
     export default {
+        name:"HomeView",
         setup(){
         const myProductStore = useProductStore();
         return {myProductStore};
         },
         computed:{
             ...mapState(useProductStore, ['promoitem']),
-        ...mapState(useProductStore, ['catitems']),
-        ...mapState(useProductStore, ['proditems']),
+            ...mapState(useProductStore, ['catitems']),
+            ...mapState(useProductStore, ['proditems']),
         
         },
         methods:{
@@ -67,13 +71,11 @@
         Promotion,
         Menu,
         Product,
-        Header,
-        MenuSelection,
         Showcase
     },
 };
 </script>
-<style>
+<style scoped>
 
 
 .ProductList {
@@ -87,7 +89,7 @@
     flex-wrap: wrap;
     width: 100%;
     display: flex;
-    gap: 1.33rem;
+    gap: .8rem;
 }
 
 .PromotionList {

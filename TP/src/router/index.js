@@ -3,16 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path:'/',
-      name:'Home',
-      component: ()=>{import("../views/Home.vue")},
-    },
-    {
-      path:'/categories/:categoryId',
-      // component:
-    },
+    // will match everything and put it under `$route.params.pathMatch`
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: ()=>import('../views/NotFound.vue') },
+    {path:'/', component: ()=>import('../views/HomeView.vue')},
+    {path:'/categories/:categoryId',component:()=>import('../views/CategoriesView.vue')},
+    {path:'/products/:productId',component:()=>import('@/views/ProductsView.vue')},
   ]
 })
 
-export default router
+export default router;

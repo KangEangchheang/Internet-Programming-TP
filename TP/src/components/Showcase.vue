@@ -1,6 +1,8 @@
 <template>
     <div class="showcase">
-        <div>
+        <div class="backgroundimagbanner"></div>
+        <div class="backgroundimagbannercolor"></div>
+        <div class="showcasetitle">
             <h1>
                 Don't miss amazing grocery deals
             </h1>
@@ -28,6 +30,24 @@
     }
 </script>
 <style>
+.backgroundimagbanner{
+    background-image: url('../assets/image/shwocaseban.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: -1;
+}
+.backgroundimagbannercolor{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+    z-index: -2;
+    border-radius: 15px;
+}
 .subsinput{
     display:flex;
     gap:0.2rem;
@@ -45,7 +65,7 @@
     padding-right:8rem;
     font-size: 14px;
 }
-    .showcase > div{
+    .showcasetitle{
         display: flex;
         flex-direction: column;
         gap:2rem;
@@ -55,9 +75,8 @@
     .showcase{
         display: flex;
         width: 100%;
-        justify-content: start;
-        background-color:antiquewhite;
         border-radius: 10px;
+        position: relative;
     }
     .showcase h1{
         font-size: 64px;
@@ -66,7 +85,7 @@
         width:100%;
     }
     .bannerpic{
-        background-image: url('../assets//image/showcasepic.png');
+        background-image: url('../assets/image/showcasepic.png');
         max-width: 60%;
         width:50%;
         background-position: center;

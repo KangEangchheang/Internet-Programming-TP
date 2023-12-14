@@ -9,7 +9,7 @@
         <img :src="image"/>
         <div style="padding:1rem;display:flex;flex-direction: column; font-size: 12px;">
             <p1 style="font-weight: bold;opacity: 0.5;">Hodo Foods</p1>
-            <p2 style="font-weight: bold;font-size: 14px;">{{ name }}</p2>
+            <div class="prodtitle" style="font-weight: bold;font-size: 14px;" @click="redirect">{{ name }}</div>
             <div style="display:flex; gap:0.5rem; align-items:center;">
                 <div style="display:flex;gap:0.1rem">
                     <!-- star rating -->
@@ -19,19 +19,19 @@
                 <p3>{{ rate.toFixed(1) }}</p3>
             </div>
             <p3>{{ description }}</p3>
-            <div style="display:flex; justify-content:space-between;flex-wrap:wrap;">
+            <div style="display:flex; justify-content:space-between;flex-wrap:wrap;position: relative;">
                 <div v-if="discountPercentage > 0" style="display: flex; gap:0.2rem; align-items:end;">
                     <p4 style="color:#3BB77E;">${{ (sellPrice - (sellPrice * (discountPercentage / 100))).toFixed(2) }}</p4>
                     <p5>${{ (sellPrice * 1).toFixed(2) }}</p5>
                 </div>
                 <p4 v-else>${{ (sellPrice * 1).toFixed(2) }}</p4>
-                <div >
+                <div style="position: absolute;right:0;">
                     <button :class="{'clicked':buttonClicked,'notClicked':!buttonClicked}" style="padding:0.1rem 0.9rem; border-radius:4px" @click="handleButtonClick">
-                        <div v-if="buttonClicked" style="display:flex;align-items:center;">
-                            <p style="margin-right:1rem;">{{ 1 }}</p>
-                            <div style="display:flex; flex-direction:column; justify-content:space-between;">
-                                <p11 style="height:10px;">^</p11>
-                                <p11 style="font-size:10px;">v</p11>
+                        <div  v-if="buttonClicked" style="display: flex;border-radius: 5px;align-items: center;gap:.5rem;font-weight: 500;color:var(--tpgreen);">
+                            {{ 1 }}
+                            <div style="display:flex; flex-direction: column;">
+                                <img style="width: 14px;" src="../assets/icons/fi-rs-angle-small-up.svg"/>
+                                <img style="width: 14px;" src="../assets/icons/fi-rs-angle-small-down.svg"/>
                             </div>
                         </div>
                         <div v-else>Add +</div>
@@ -42,33 +42,46 @@
     </div>
 </template>
 <script>
-    export default{
+import { RouterLink, useRouter } from 'vue-router';
 
-        props:{
-            tag:String,
-            image: String,
-            category: Number,
-            name: String,
-            rate: Number,
-            description: String,
-            sellPrice: Number,
-            discountPercentage: Number,
-            discountPrice: Number
-        },
-        methods:{
-            handleButtonClick(){
-                this.buttonClicked = !this.buttonClicked;
-            }
-        },
-        data(){
-            return{
-                color:['#3BB77E','#FD6E6E','#FDC040'],
-                buttonClicked:false,
-            }
+    export default{
+    props: {
+        id: Number,
+        tag: String,
+        image: String,
+        category: Number,
+        name: String,
+        rate: Number,
+        description: String,
+        sellPrice: Number,
+        discountPercentage: Number,
+        discountPrice: Number
+    },
+    setup(props) {
+        const router = useRouter();
+        function redirect() {
+            router.push(`/products/${props.id}`);
         }
-    }
+        return { redirect };
+    },
+    methods: {
+        handleButtonClick() {
+            this.buttonClicked = !this.buttonClicked;
+        }
+    },
+    data() {
+        return {
+            color: ['#3BB77E', '#FD6E6E', '#FDC040'],
+            buttonClicked: false,
+        };
+    },
+    components: { RouterLink },
+}
 </script>
-<style>
+<style scoped>
+    .prodtitle:hover{
+        cursor: pointer;
+    }
     .notClicked {
         border:none; 
         background:rgb(59, 183, 126,0.2);

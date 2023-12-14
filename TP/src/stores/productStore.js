@@ -141,8 +141,13 @@ export const useProductStore = defineStore('productStore',{
         },
       ]
     }),
-    getters:{
-        
+    actions:{
+        getCat(cat){
+          return this.$state.catitems[cat];
+        },
+        getProd(prod){
+          return this.$state.proditems[prod];
+        }
     }
     
 })

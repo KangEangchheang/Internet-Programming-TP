@@ -2,31 +2,45 @@
   <div class="cont">
     <Header/>
     <MenuSelection/>
-    <RouterView></RouterView>
+    <RouterView :key="compkey"/>
   </div>
 </template>
 <script>
   import Header from './components/Header.vue';
   import MenuSelection from './components/MenuSelection.vue';
-  import {RouterLink,RouterView} from 'vue-router'
+  import {RouterView} from 'vue-router'
 
   export default {
+    components:{
+      Header,
+      MenuSelection,
+    },
     data(){
-      return {
-
+      return{
+        compkey:[0],
       }
     },
-
+    created() {
+      this.$watch(
+        () => this.$route.params,
+        (toParams, previousParams) => {
+          if (toParams != previousParams) {
+            this.compkey = toParams;
+          }
+        }
+      )
+    },
   };
 </script>
-<style>
+<style scoped>
 .cont {
     display: flex;
     width: 100vw;
     align-items: center;
     flex-direction: column;
-    padding: 2rem;
+    padding: 2rem 4rem;
     gap: 2rem;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 </style>
