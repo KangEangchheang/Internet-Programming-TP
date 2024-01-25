@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +35,7 @@ Route::patch('/categories/{categoryId}',function(Request $request){
 Route::delete('/categories/{categoryId}',function(Request $request){
     return "Delete 1 category";
 });
+Route::apiResource('categories', CategoryController::class);
+Route::apiResource('register',AuthController::class);
+Route::post('/api/login', 'AuthController@login');
+Route::post('/api/register', 'AuthController@register');

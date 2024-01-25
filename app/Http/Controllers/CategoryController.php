@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function getCategories(){
         return Category::all();
     }
-    public function createCategories(){
+    public function createCategories(Request $request){
         $category = new Category;
         $category->name = $request->name;
         $category->save();
