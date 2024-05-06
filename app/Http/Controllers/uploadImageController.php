@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Intervention\Image\Facades\Image as Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
+use App\Models\Image;
 
 
 class uploadImageController extends Controller
@@ -12,7 +13,11 @@ class uploadImageController extends Controller
 
     public function index()
     {
-        return view('gallery/index');
+        $data = Image::all();
+
+
+        return view('gallery.index',compact("data"));
+
     }
 
     public function create()
@@ -25,10 +30,16 @@ class uploadImageController extends Controller
         $request->validate([
             'image' => 'required|max:2048' // Validation rules for upload
         ]);
+
+        $upload = new Image();
+
         $image = $request->file('image');
+
         // $fileName = uniqid() . '.' . $image->getClientOriginalName();
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $path = $image->storeAs('uploads', $fileName); // Store the original im
+        // $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+
+        // $path = $image->storeAs('uploads', $fileName); // Store the original im
+
         // (Optional) Using Intervention Image
         // $thumbnailPath = 'thumbnails/' . $fileName;
         // $intervention = Image::make($image->getRealPath());
@@ -44,12 +55,14 @@ class uploadImageController extends Controller
         // $imagick->resizeImage(200, 200, Imagick::FILTER_TRIANGLE, 1);
         // $imagick->writeImage(storage_path('app/thumbnails/' . $fileName));
 
-        $image = Storage::disk('minio')->putFile('', $fileName); // Upload a file
-        $url = Storage::disk('minio')->url('2023-05-10.png'); // Get the public URL
+        $image = Storage::disk('minio')->putFile('storage/', $image); // Upload a file
+
+        $upload->path = $image;
+        $upload->save();
+
+        $data = Image::all();
 
 
-        dd($url);
-        // Update your Image model to store original and thumbnail paths (if ap
-        return redirect('/gallery')->with('success', 'Image uploa');
+        return view('gallery.index',compact("data"));
     }
 }

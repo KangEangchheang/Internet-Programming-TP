@@ -74,7 +74,18 @@
 	<div class="gallery__page">
 		<div class="gallery__warp">
 			<div class="row">
-				<div class="col-lg-3 col-md-4 col-sm-6">
+                @foreach ($data as $image )
+
+                    <?php $image->path = 'http://127.0.0.1:9000/'.$image->path ?>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <a class="gallery__item fresco" href="{{$image->path}}" data-fresco-group="gallery">
+                            <img src="{{$image->path}}" alt="">
+                        </a>
+                    </div>
+                @endforeach
+
+				{{-- <div class="col-lg-3 col-md-4 col-sm-6">
 					<a class="gallery__item fresco" href="img/gallery/1.jpg" data-fresco-group="gallery">
 						<img src="img/gallery/1.jpg" alt="">
 					</a>
@@ -133,7 +144,7 @@
 					<a class="gallery__item fresco" href="img/gallery/12.jpg" data-fresco-group="gallery">
 						<img src="img/gallery/12.jpg" alt="">
 					</a>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</div>
