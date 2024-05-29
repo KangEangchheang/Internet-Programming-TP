@@ -1,0 +1,4 @@
+i
+node_modules
+*.env
+vendor
